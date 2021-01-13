@@ -1,5 +1,6 @@
 import React from 'react';
-import UserCreate from './UserCreate'
+import UserCreate from './UserCreate';
+import LanguageContext from './../contexts/LanguageContext';
 
 class App extends React.Component {
   state = { language: 'english' }
@@ -14,9 +15,17 @@ class App extends React.Component {
         <div>
           Select a language: 
           <i className="flag us" onClick={() => this.onLanguageChange('english')} />
-          <i className="flag in" onClick={() => this.onLanguageChange('hindi')} />
+          <i className="flag nl" onClick={() => this.onLanguageChange('duch')} />
         </div>
         {/* {this.state.language} */}
+        <LanguageContext.Provider value={this.state.language}>
+          <UserCreate />
+        </LanguageContext.Provider>
+
+        <LanguageContext.Provider value='dutch'>
+          <UserCreate />
+        </LanguageContext.Provider>
+
         <UserCreate />
       </div>
     )
@@ -24,3 +33,7 @@ class App extends React.Component {
 }
 
 export default App;
+
+// Create the context object
+// Define context type
+// You get the context
